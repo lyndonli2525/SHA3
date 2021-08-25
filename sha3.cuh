@@ -16,7 +16,7 @@ typedef unsigned char BYTE;
 
 typedef struct {
     union {                                 
-        uint8_t b[100];       //8 bit bytes             
+        uint8_t b[200];       //8 bit bytes             
         uint64_t q[25];       //64 bit words              
     } A;
     int pt; 
@@ -41,6 +41,7 @@ __device__ void sha3_final(sha3_ctx *ctx, void *md);
 __global__ void sha3(const void *in, int n, size_t inlen, void *md);
 void print_job(JOB **jobs, int num_jobs);
 void runJobs(JOB** jobs, int num_inputs);
+int getNumInp(const char *inpF);
 
 
 #endif

@@ -162,5 +162,21 @@ void print_job(JOB **jobs, int num_jobs) {
       printf("\n");
     }
   }
-
-
+  int getNumInp(const char *inpF){
+    FILE *inp;
+    inp = fopen(inpF, "r"); // filename of your data file
+    size_t num_inputs = 0;
+    while (1) {
+      char r = (char)fgetc(inp);
+      while (((r != ' ') && (r!= '\n')) && !feof(inp)) { // read till , or EOF
+        r = (char)fgetc(inp);
+      }
+      if (feof(inp)) { 
+        break;
+      }
+      num_inputs++;
+    }
+    fclose(inp);
+    return num_inputs;
+  }
+ 
