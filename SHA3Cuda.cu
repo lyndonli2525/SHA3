@@ -120,15 +120,14 @@ __global__ void sha3(JOB **jobs, int n) {
 //Run SHA3 function for GPU
 void runJobs(JOB **jobs, int num_jobs)
 {
-	int blockSize = 4;
-	int numBlocks = (num_jobs + blockSize - 1) / blockSize;
-	
-	sha3 <<< numBlocks, blockSize >>> (jobs, num_jobs);
-}   
+  int blockSize = 4;
+  int numBlocks = (num_jobs + blockSize - 1) / blockSize;
+  sha3 <<< numBlocks, blockSize >>> (jobs, num_jobs);
+}
 
 //Copies constants to host device
 void pre_sha3() {
-	cudaMemcpyToSymbol(dev_keccakf_rndc, host_keccakf_rndc, sizeof(host_keccakf_rndc), 0, cudaMemcpyHostToDevice);
+  cudaMemcpyToSymbol(dev_keccakf_rndc, host_keccakf_rndc, sizeof(host_keccakf_rndc), 0, cudaMemcpyHostToDevice);
   cudaMemcpyToSymbol(dev_keccakf_rotc, host_keccakf_rotc, sizeof(host_keccakf_rotc), 0, cudaMemcpyHostToDevice);
   cudaMemcpyToSymbol(dev_keccakf_piln, host_keccakf_piln, sizeof(host_keccakf_piln), 0, cudaMemcpyHostToDevice);
 }
