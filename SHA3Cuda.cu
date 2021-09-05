@@ -1,4 +1,3 @@
-
 #include "sha3.cuh"
 #include <string.h>
 #include <stdio.h>
@@ -56,6 +55,7 @@ __device__ void sha3_transform(uint64_t A[25])
     A[j] = ROTL64(D, dev_keccakf_rotc[i]);
     D = C[0];
   }
+
   //  Chi
   for (j = 0; j < 25; j += 5) {
     for (i = 0; i < 5; i++)
@@ -73,7 +73,7 @@ __device__ void sha3_init(sha3_ctx *ctx)
 {
   for (int i = 0; i < 25; i++) {
     ctx->A.q[i] = 0;
-	}
+  }
   ctx->mdlen = 32;
   ctx->rsiz = (200 - (2 * 32));
   ctx->pt = 0;
