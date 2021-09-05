@@ -10,20 +10,20 @@
 
 //SHA3 context 
 typedef struct {
-	union {
-	  uint8_t b[200];		//8 bit bytes
-	  uint64_t q[25];		//64 bit words
-	}A;
-	int pt;
-	int rsiz;
-	int mdlen;
-} sha3_ctx;
+  union {
+    uint8_t b[200];		//8 bit bytes
+    uint64_t q[25];		//64 bit words
+  }A;
+  int pt;
+  int rsiz;
+  int mdlen;
+}sha3_ctx;
 
 //Structure to hold messages
 typedef struct JOB {
-	size_t size;
-	uint8_t digest[64];
-	char * data;
+  size_t size;
+  uint8_t digest[64];
+  char * data;
 }JOB;
 
 //copies sha3 constants to host
